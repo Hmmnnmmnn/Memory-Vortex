@@ -5,3 +5,11 @@
 <div id="board"></div>
 <h2 id="message"></h2>
 <button oncilck="startGame()">Restart</button></div>
+  body {
+         background-color:purple;
+         font-family:Arial;
+         text-alian:center
+       }
+h1 {
+    color:purple:
+}
