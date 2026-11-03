@@ -1,7 +1,7 @@
 <div id="START">
   <h1>Tutorial Level</h1>
   <p>Find the matching cards!</P>
-  <p>lives:<span id="lives">3</span></p>
 <P>Time: <span id="timer">0</span> seconds</p>
 <div id="board"></div>
 <h2 id="message"></h2>
+<button oncilck="startGame()">Restart</button></div>
