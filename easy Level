@@ -54,6 +54,7 @@
     <h2 id="message"></h2>
 
     <button onclick="startGame()">Restart</button>
+    <button onclick="goToMenu()">Return</button>
 
     <script>
 
@@ -108,7 +109,7 @@
                 document.getElementById("timer").textContent = seconds;
             }, 1000);
         }
-
+            
         function flipCard(card) {
 
             if (lock || card.textContent != "?") {
@@ -161,9 +162,7 @@
         }
 
         startGame();
-
     </script>
 
 </body>
 </html>
-
