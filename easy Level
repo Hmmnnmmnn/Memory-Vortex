@@ -57,8 +57,7 @@
 
     <script>
 
-        let emojis = ["❤️", "❤️", "😍", "😍",
-                      "👍", "👍", "🙌", "🙌"];
+        let emojis = ["❤️", "❤️", "😍", "😍","👍", "👍", "🙌", "🙌"];
 
         let firstCard = null;
         let secondCard = null;
