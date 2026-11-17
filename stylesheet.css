@@ -1,10 +1,12 @@
 :root {
   --bg: #f4f1fa;
+  --box: #d0d0d6;
   --card: #181818; /* card colour */
   --ink: #181818; /* character colour */
+  --btnink: #f4f1fa; /* button text colour */
   --borderline: #c7c2d0; /* colour of the line of the border */
-  --btn: #5d40d1; /* button color */
-  --btnshadow: #3a1c70;
+  --btn: #181818; /* button color */
+  --btnshadow: #0e0e0e;
   --btn2: #ddd6ec;  
   --mark: #ffd84d; /* color shown when user selects an input (input box, etc.) */
 }
@@ -19,26 +21,36 @@ body {
 }
 main { max-width: 560px; margin: 0 auto; padding: 2.5rem 1.25rem; }
 h1 { margin:  0 auto; font-size: 2rem; letter-spacing: -0.02em; }
+
 #menu-screen {
     display: grid;
     place-items: center;
     align-items: center;
     height: 20rem;
+    text-align: center;
 }
 
-.game-btn {
-    background-color: var (--btn);
-    color: white;
-    font-size: 20px;
+#menu-screen button {
+    background-color: var(--btn);
+    color: var(--btnink);
+    font-size: 1rem;
     font-weight: bold;
-    padding: 15px 30px;
+    padding: 1rem 2rem;
     border: none;
-    border-radius: 10px;
+    border-radius: 0.5rem;
+    margin: 0.5rem;
     /* Creates the 3D bottom edge */
-    box-shadow: 0 6px 0 (var(--btnshadow)); 
+    box-shadow: 0 0.5rem 0 var(--btnshadow);
     cursor: pointer;
     user-select: none; /* Prevents text highlighting on rapid clicks */
     transition: transform 0.05s, box-shadow 0.05s;
-  }
+}
 
-
+.box {
+  background-color: var(--box);
+  padding: 2.5rem 5rem;
+  margin: 0 auto;
+  max-width: 560px;
+  border-radius: 1rem;
+  box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.1);
+}
