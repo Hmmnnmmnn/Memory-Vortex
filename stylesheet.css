@@ -1,6 +1,5 @@
 :root {
   --bg: #f4f1fa;
-  --box: #d0d0d6;
   --card: #181818; /* card colour */
   --ink: #181818; /* character colour */
   --btnink: #f4f1fa; /* button text colour */
@@ -10,60 +9,80 @@
   --btn2: #ddd6ec;  
   --mark: #ffd84d; /* color shown when user selects an input (input box, etc.) */
 }
-* { box-sizing: border-box; }
+* { 
+  box-sizing: border-box; 
+}
+
+.hidden {
+  display: none !important;
+}
+
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: "Franklin Gothic", system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   
 }
-main { max-width: 560px;
+main { 
+  max-width: 900px;
   margin: 0 auto;
-  padding: 2.5rem 1.25rem; 
+  padding: 5rem 2.5rem; 
 }
 
-h1 { margin:  0 auto;
+h1 { 
+  margin:  0 auto;
   font-size: 2rem;
-  letter-spacing: -0.02em; 
+  font-weight: 700;
+  letter-spacing: 0.02rem; 
 }
 
 #menu-screen {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    place-items: center;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
-    height: 20rem;
-    
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(2rem, 8vh, 6rem) clamp(1.25rem, 5vw, 4rem);
+  gap: clamp(1rem, 3vh, 2rem);
+}
+
+#menu-screen h1 {
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+}
+
+#menu-screen p {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  margin: 0;
 }
 
 #menu-screen button {
-    background-color: var(--btn);
-    color: var(--btnink);
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 0.5rem;
-    margin: 0.5rem;
-    /* Creates the 3D bottom edge */
-    box-shadow: 0 0.5rem 0 var(--btnshadow);
-    cursor: pointer;
-    user-select: none; /* Prevents text highlighting on rapid clicks */
-    transition: transform 0.05s, box-shadow 0.05s;
+  background-color: var(--btn);
+  color: var(--btnink);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: bold;
+  padding: 1.25rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  margin: 0;
+  /* Creates the 3D bottom edge */
+  box-shadow: 0 0.5rem 0 var(--btnshadow);
+  cursor: pointer;
+  user-select: none; /* Prevents text highlighting on rapid clicks */
+  transition: transform 0.05s, box-shadow 0.05s;
 }
 
-.box {
-  background-color: var(--box);
-  padding: 2.5rem 5rem;
-  margin: 0 auto;
-  max-width: 560px;
-  border-radius: 1rem;
-  box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.1);
+#button-group {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 32rem);
+  gap: 1rem;
 }
 
-
+#game-screen {
+  display: grid;
+}
