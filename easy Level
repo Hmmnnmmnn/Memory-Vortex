@@ -44,7 +44,7 @@
 
 <body>
 
-    <h1>Tutorial Level</h1>
+    <h1>Easy Level</h1>
     <p>Find the matching cards!</p>
 
     <p>Time: <span id="timer">0</span> seconds</p>
