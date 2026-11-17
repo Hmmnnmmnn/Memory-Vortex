@@ -18,3 +18,47 @@
    </div>
 </body>
 </html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+  .game-btn {
+    background-color: #ff3e3e;
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    /* Creates the 3D bottom edge */
+    box-shadow: 0 6px 0 #b30000; 
+    cursor: pointer;
+    user-select: none; /* Prevents text highlighting on rapid clicks */
+    transition: transform 0.05s, box-shadow 0.05s;
+  }
+
+  /* Pushes the button down when clicked or tapped */
+  .game-btn:active {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 #b30000;
+  }
+</style>
+</head>
+<body>
+
+  <button class="game-btn" id="startBtn">START GAME</button>
+
+  <script>
+    document.getElementById('startBtn').addEventListener('click', () => {
+      console.log('Game Started!');
+      // Add your game start logic here
+    });
+  </script>
+
+</body>
+</html>
