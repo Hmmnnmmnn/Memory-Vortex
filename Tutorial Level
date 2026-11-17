@@ -1,68 +1,167 @@
-<div id="START">
-  <h1>Tutorial Level</h1>
-  <p>Find the matching cards!</P>
-<P>Time: <span id="timer">0</span> seconds</p>
-<div id="board"></div>
-<h2 id="message"></h2>
-<button oncilck="startGame()">Restart</button></div>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gradient Background Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Card Game</title>
+
     <style>
-        .gradient-box {
-            width: 100%;
-            height: 300px;
-            /* Syntax: linear-gradient(direction, color1, color2, ...) */
-            background: linear-gradient(to right, purple, purple, blue, indigo ); 
-            
-            /* Center text inside the box */
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, purple, blue, indigo);
+            color: white;
+        }
+
+        #board {
+            display: grid;
+            grid-template-columns: repeat(2, 120px);
+            gap: 15px;
+            justify-content: center;
+            margin: 30px auto;
+        }
+
+        .card {
+            height: 120px;
+            background: linear-gradient(to right, purple, blue);
+            border: 2px solid white;
+            border-radius: 12px;
+            font-size: 35px;
+            cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
-            font-family: sans-serif;
-            font-size: 24px;
+            transition: transform 0.2s;
         }
-</html>
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
     </style>
 </head>
-    <button type="button" onclick="alert('❤️❤️❤️❤️❤️❤️❤️')">
+
 <body>
 
-    <div class="gradient-box">
-      i am a card hehe click me!
-    </div>
-  
+    <h1>Tutorial Level</h1>
+    <p>Find the matching cards!</p>
+
+    <p>Time: <span id="timer">0</span> seconds</p>
+
+    <div id="board"></div>
+
+    <h2 id="message"></h2>
+
+    <button onclick="startGame()">Restart</button>
+
+    <script>
+        const emojis = ["❤️", "❤️", "😍", "😍"];
+
+        let firstCard = null;
+        let secondCard = null;
+        let lockBoard = false;
+        let matched = 0;
+        let seconds = 0;
+        let timer;
+
+        function startGame() {
+            clearInterval(timer);
+
+            seconds = 0;
+            matched = 0;
+            firstCard = null;
+            secondCard = null;
+            lockBoard = false;
+
+            document.getElementById("timer").textContent = 0;
+            document.getElementById("message").textContent = "";
+
+            const shuffled = [...emojis].sort(
+                () => Math.random() - 0.5
+            );
+
+            const board = document.getElementById("board");
+            board.innerHTML = "";
+
+            shuffled.forEach(emoji => {
+                const card = document.createElement("div");
+
+                card.className = "card";
+                card.textContent = "?";
+                card.dataset.emoji = emoji;
+
+                card.onclick = function() {
+                    flipCard(card);
+                };
+
+                board.appendChild(card);
+            });
+
+            timer = setInterval(() => {
+                seconds++;
+                document.getElementById("timer").textContent = seconds;
+            }, 1000);
+        }
+
+        function flipCard(card) {
+
+            if (lockBoard ||
+                card === firstCard ||
+                card.textContent !== "?") {
+                return;
+            }
+
+            card.textContent = card.dataset.emoji;
+
+            if (firstCard === null) {
+                firstCard = card;
+                return;
+            }
+
+            secondCard = card;
+            lockBoard = true;
+
+            if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
+
+                matched += 2;
+
+                firstCard = null;
+                secondCard = null;
+                lockBoard = false;
+
+                if (matched === emojis.length) {
+                    clearInterval(timer);
+
+                    document.getElementById("message").textContent =
+                        "🎉 Congratulations! You won in " +
+                        seconds + " seconds!";
+                }
+
+            } else {
+
+                setTimeout(() => {
+                    firstCard.textContent = "?";
+                    secondCard.textContent = "?";
+
+                    firstCard = null;
+                    secondCard = null;
+                    lockBoard = false;
+
+                }, 800);
+            }
+        }
+
+        startGame();
+    </script>
+
 </body>
- </style>
-</head>
-    <button type="button" onclick="alert('❤️❤️❤️❤️❤️❤️❤️')">
-<body>
+</html>
 
-    <div class="gradient-box">
-      i am a card hehe click me!
-    </div>
-  
-</body>
- </style>
-</head>
-    <button type="button" onclick="alert('😍😍😍😍😍😍😍😍😍')">
-<body>
-
-    <div class="gradient-box">
-      i am a card hehe click me!
-    </div>
-  
-</body>
- </style>
-</head>
-    <button type="button" onclick="alert('😍😍😍😍😍😍😍😍😍')">
-<body>
-
-    <div class="gradient-box">
-      i am a card hehe click me!
-    </div>
-  
