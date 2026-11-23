@@ -1,22 +1,26 @@
 :root {
-  --bg: #f4f1fa;
+  --bg: #f4f1fa; /* background colour */
+  --box:#d0d0d6; /* box colour */
   --card: #181818; /* card colour */
   --ink: #181818; /* character colour */
   --btnink: #f4f1fa; /* button text colour */
   --borderline: #c7c2d0; /* colour of the line of the border */
   --btn: #181818; /* button color */
-  --btnshadow: #0e0e0e;
-  --btn2: #ddd6ec;  
-  --mark: #ffd84d; /* color shown when user selects an input (input box, etc.) */
+  --btnshadow: #0e0e0e; /* button shadow color */
 }
+
+/* The * selector applies styles to all elements on the page. 
+  The box-sizing property is set to border-box, which means that the width and height of elements will include padding and borders, making it easier to manage layout and spacing. */
 * { 
   box-sizing: border-box; 
 }
 
+/* The .hidden class is used to hide parts of the html and reveal them later. */
 .hidden {
   display: none !important;
 }
 
+/* Styles for the body element. It removes default margin, sets background and text colors, defines the font family, and sets line height for better readability. */
 body {
   margin: 0;
   background: var(--bg);
@@ -25,64 +29,145 @@ body {
   line-height: 1.5;
   
 }
-main { 
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 5rem 2.5rem; 
+
+/*The .screen class is used to create a full-screen section that centers its content both vertically and horizontally. 
+  It also ensures that the content is responsive and adapts to different screen sizes. */
+.screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.25rem;
 }
 
+/* The .panel class is used to create a visually distinct container for content. 
+  It has a background color, padding, margin, and a maximum width to ensure it looks good on various screen sizes. 
+  The border-radius and box-shadow properties give it a card-like appearance. */
+.panel {
+  background: var(--box);
+  padding: 2.5rem 2rem;
+  margin: 0 auto;
+  max-width: 720px;
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 .25rem 1rem rgba(0,0,0,.1);
+}
+
+/* Style for h1 */
 h1 { 
   margin:  0 auto;
-  font-size: 2rem;
+  font-size: clamp(1.8rem, 5vw, 2.6rem); /* Responsive font size that scales between 1.8rem and 2.6rem based on viewport width */
   font-weight: 700;
-  letter-spacing: 0.02rem; 
+  letter-spacing: -0.02em; /* em scales relative to the font size, so this value will adjust based on the current font size */
 }
 
-#menu-screen {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100svh;
-  padding: clamp(2rem, 8vh, 6rem) clamp(1.25rem, 5vw, 4rem);
-  gap: clamp(1rem, 3vh, 2rem);
+/* Style for p */
+p {
+  margin: .6rem 0 1rem;
 }
 
-#menu-screen h1 {
-  font-size: clamp(2.5rem, 8vw, 5.5rem);
-}
-
-#menu-screen p {
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-  margin: 0;
-}
-
-#menu-screen button {
+/* Style for button elements. 
+  The button has a background color, text color, font size, padding, border radius, and box shadow to create a 3D effect. 
+  It also has a transition effect for smooth interaction feedback. */
+button {
   background-color: var(--btn);
   color: var(--btnink);
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-size: 1rem;
   font-weight: bold;
-  padding: 1.25rem 2rem;
+  padding: 1rem 2rem;
   border: none;
-  border-radius: 0.5rem;
-  margin: 0;
-  /* Creates the 3D bottom edge */
-  box-shadow: 0 0.5rem 0 var(--btnshadow);
+  border-radius: .5rem;
+  margin: .5rem;
+  box-shadow: 0 .5rem 0 var(--btnshadow);
   cursor: pointer;
-  user-select: none; /* Prevents text highlighting on rapid clicks */
-  transition: transform 0.05s, box-shadow 0.05s;
+  user-select: none;
+  transition: transform .05s, box-shadow .05s;
 }
 
-#button-group {
-  display: flex;
-  flex-direction: column;
-  width: min(100%, 32rem);
-  gap: 1rem;
+/* The :active pseudo-class is used to style the button when it is being clicked. 
+  It moves the button down slightly and removes the box shadow to create a pressed effect. */
+button:active {
+  transform: translateY(.5rem);
+  box-shadow: 0 0 0 var(--btnshadow);
 }
 
-#game-screen {
+/* The #board ID selector styles the game board. 
+  It uses CSS Grid to create a responsive layout with 4 columns, each having a minimum width of 60px and a maximum width of 95px. 
+  The gap between grid items is set to 0.7rem, and the board is centered horizontally with auto margins. */
+#board {
   display: grid;
+  grid-template-columns: repeat(4, minmax(60px, 95px));
+  gap: .7rem;
+  justify-content: center;
+  margin: 1.5rem auto;
+}
+
+/* The .card class styles individual cards in the game. 
+  It sets a minimum width, aspect ratio, border radius, background color, text color, font size, and other properties to create a visually appealing card. 
+  It also includes hover and transition effects for interactivity. */
+.card {
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  border-radius: .75rem;
+  background: var(--card);
+  color: white;
+  border: 2px solid #333;
+  font-size: clamp(1.5rem, 6vw, 2.3rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 4px 0 #090909;
+  transition: transform .12s, background .2s;
+}
+
+/* The .card:hover class adds a hover effect to the cards, making them move slightly upwards when hovered over. */
+.card:hover {
+  transform: translateY(-2px); /* translateY moves an element vertically without changing the layout around it.  */
+}
+
+/* The .card.matched class styles cards that have been matched in the game. 
+  It changes the background color, border color, cursor style, and box shadow to indicate that the card is no longer interactive. */
+.card.matched {
+  background: #8270a5;
+  border-color: #655583;
+  cursor: default;
+  box-shadow: 0 4px 0 #51416f;
+}
+
+/* The .stats class is used to style the statistics section of the game. 
+  It uses Flexbox to center its content, adds spacing between items, and allows wrapping for smaller screens. 
+  The font weight is set to bold for emphasis. */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-weight: bold;
+}
+
+/* The #message ID selector styles the message area in the game. 
+  It sets a minimum height to ensure that the message area maintains a consistent size, even when there is no message displayed. */
+#message {
+  min-height: 2rem;
+}
+
+/* @media (max-width: 400px) is a media query that applies styles when specified conditions (screens 400 pixels wide or smaller) are met. This is useful for making the layout responsive and ensuring that it looks good on smaller devices. 
+  Media query for screens with a maximum width of 400px. 
+  This adjusts the padding of the .panel class, the gap and grid template columns of the #board, and the padding of buttons to ensure that the layout remains user-friendly on smaller screens. */
+@media (max-width: 400px) {
+  .panel {
+    padding: 1.5rem 1rem;
+  }
+
+  #board {
+    gap: .5rem;
+    grid-template-columns: repeat(4, minmax(55px, 75px));
+  }
+
+  button {
+    padding: .85rem 1.2rem;
+  }
 }
